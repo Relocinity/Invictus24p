@@ -4,9 +4,7 @@ import os
 import solution
 import matplotlib.pyplot as plt,numpy as np
 import cv2,pickle
-os.chdir(f"E:\College\Journey\AIMS\Invictus-24")
 model = load_model('model.h5')
-print(model.summary())
 class pokemon():
     def __init__(self,name: str):
         self.name=name.lower()
