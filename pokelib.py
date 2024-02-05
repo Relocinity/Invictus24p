@@ -4,7 +4,7 @@ import os
 import solution
 import matplotlib.pyplot as plt,numpy as np
 import cv2,pickle
-model = load_model('model.h5')
+model = load_model('model.h5?rlkey=bmv47u7ieh8i2iatr38vx3l7k&dl=1')
 class pokemon():
     def __init__(self,name: str):
         self.name=name.lower()
