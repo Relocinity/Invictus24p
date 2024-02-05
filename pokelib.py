@@ -21,7 +21,6 @@ class pokemon():
     def __str__(self): return f"( Name: {self.name} , Id: {self.id} , Types : {self.types} , Stats : {self.stats} , Height : {self.height} , Weight : {self.weight} )"
 
 def findPromimentPokemon(inputImage : solution.Segment_Image or solution.Crypt_Image):
-    os.chdir(f"E:\College\Journey\AIMS\Invictus-24")
     model = load_learner(fname="PokemonClassifier.pkl")
     cv2.imwrite('testPokemon.jpg',inputImage.img)
     sol = model.predict('testPokemon.jpg')
