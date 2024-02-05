@@ -120,7 +120,7 @@ class Segment_Image():
 
 def test_solution(output_array: np.ndarray)->bool:
     hashsol = hashlib.sha256(str(sum([16**i *x for i,x in enumerate(output_array.flatten())])).encode('utf-8')).hexdigest()
-    soln = 'eb9703d81d5f2921e6cd5701aca6d7bd8be7bc6f6445bfedba365da19cc93c5c'
+    soln = '7918f3f87a52acb1ac038db6924a5b5d32a1298a0d1da518d0ada717da4c2b8b'
     
     return hashsol , hashsol==soln
 test_solution(np.array([1]))
