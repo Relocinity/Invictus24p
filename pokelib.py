@@ -25,11 +25,9 @@ def findPromimentPokemon(inputImage : solution.Segment_Image or solution.Crypt_I
     f = open("pokemon_classes",'rb')
     data = pickle.load(f)
     f.close()
-    im = cv2.cvtColor(cv2.resize(inputImage.img,[160,160]),cv2.COLOR_BGR2RGB)
+    im = cv2.cvtColor(cv2.resize(inputImage.orig,[160,160]),cv2.COLOR_BGR2RGB)
     sol = model(im.reshape(1,160,160,3)/255)
     plt.imshow(im)
 
     ans = np.argmax(sol.numpy())
     return pokemon(data[ans].lower())
-
-    # return pokemon(sol)
