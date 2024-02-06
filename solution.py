@@ -1,6 +1,6 @@
 import numpy as np
 import hashlib
-import cv2
+import cv2,copy
 import matplotlib.pyplot as plt
 from functools import reduce
 
@@ -8,7 +8,7 @@ class Crypt_Image():
     def __init__(self,filepath: str,solution_key):
         if hashlib.sha256(str(solution_key).encode("utf-8")).hexdigest()!='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4': your_ans_is_wrong+=1
         self.orig = cv2.imread(filepath)
-        self.img = self.orig
+        self.img = copy.deepcopy(self.orig)
         self.b,self.g,self.r = cv2.split(self.orig)
         self.matSize = self.img.shape[:2]
         self.ENABLE_RED = True
@@ -82,7 +82,7 @@ class Crypt_Image():
 class Segment_Image():
     def __init__(self,src,bv,gv,rv):
         self.orig = src
-        self.img = self.orig
+        self.img = copy.deepcopy(self.orig)
         self.matSize = self.img.shape[:2]
         self.b,self.g,self.r = cv2.split(self.orig)
         self.ENABLE_RED = rv
