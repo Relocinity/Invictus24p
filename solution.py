@@ -80,8 +80,8 @@ class Crypt_Image():
 
 
 class Segment_Image():
-    def __init__(self,img,bv,gv,rv):
-        self.orig = img
+    def __init__(self,src,bv,gv,rv):
+        self.orig = src
         self.img = self.orig
         self.matSize = self.img.shape[:2]
         self.b,self.g,self.r = cv2.split(self.orig)
