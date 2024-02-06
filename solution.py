@@ -72,10 +72,10 @@ class Crypt_Image():
         else: self.img=self.orig
         return val
 
-    ENABLE_BLUE = property(fset=setBlue)
-    ENABLE_GREEN = property(fset=setGreen)
-    ENABLE_RED= property(fset=setRed)
-    IS_GRAYSCALE=property(fset=setGray)
+    ENABLE_BLUE = property(fget=lambda x:x,fset=setBlue)
+    ENABLE_GREEN = property(fget=lambda x:x,fset=setGreen)
+    ENABLE_RED= property(fget=lambda x:x,fset=setRed)
+    IS_GRAYSCALE=property(fget=lambda x:x,fset=setGray)
 
 
 class Segment_Image():
