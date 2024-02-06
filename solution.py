@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from functools import reduce
 
 class Crypt_Image():
-    def __init__(self,filepath: str):
+    def __init__(self,filepath: str,solution_key):
+        if hashlib.sha256(str(solution_key).encode("utf-8")).hexdigest()!='03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4': your_ans_is_wrong+=1
         self.orig = cv2.imread(filepath)
         self.img = self.orig
         self.b,self.g,self.r = cv2.split(self.orig)
@@ -30,10 +31,10 @@ class Crypt_Image():
         segments = []
         for y in range(self.NUM_ROWS):
             for x in range(self.NUM_COLS):
-                segments.append(Segment_Image(self.img[
+                segments.append(Segment_Image(self.orig[
                     int(y*1080/self.NUM_ROWS):int(1080/self.NUM_ROWS*(y+1)),
                     int(x*1080/self.NUM_COLS):int(1080/self.NUM_COLS*(x+1)),
-                    :]))
+                    :],self.ENABLE_BLUE,self.ENABLE_GREEN,self.ENABLE_RED))
         return segments
     def SegShow(self,segArr):
         fig, ax = plt.subplots(self.NUM_ROWS,self.NUM_COLS)
@@ -78,13 +79,13 @@ class Crypt_Image():
 
 
 class Segment_Image():
-    def __init__(self,img):
+    def __init__(self,img,bv,gv,rv):
         self.orig = img
         self.img = self.orig
         self.b,self.g,self.r = cv2.split(self.orig)
-        self.ENABLE_RED = True
-        self.ENABLE_GREEN = True
-        self.ENABLE_BLUE = True
+        self.ENABLE_RED = rv
+        self.ENABLE_GREEN = gv
+        self.ENABLE_BLUE = bv
     ## Transformations and properties:
     def setRed(self,val):
         if val==True: self.img[:,:,2] = self.r
