@@ -86,6 +86,7 @@ class Segment_Image():
         self.ENABLE_RED = rv
         self.ENABLE_GREEN = gv
         self.ENABLE_BLUE = bv
+        self.matSize = self.img.shape[:2]
     ## Transformations and properties:
     def setRed(self,val):
         if val==True: self.img[:,:,2] = self.r
