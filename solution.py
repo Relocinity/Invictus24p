@@ -10,13 +10,14 @@ class Crypt_Image():
         self.orig = cv2.imread(filepath)
         self.img = self.orig
         self.b,self.g,self.r = cv2.split(self.orig)
+        self.matSize = self.img.shape[:2]
         self.ENABLE_RED = True
         self.ENABLE_GREEN = True
         self.ENABLE_BLUE = True
         self.IS_GRAYSCALE = False
         self.NUM_ROWS = 1
         self.NUM_COLS = 1
-        self.matSize = self.img.shape[:2]
+        
     def view_original(self):
         plt.close('all')
         plt.imshow(cv2.cvtColor(self.orig,cv2.COLOR_BGR2RGB))
@@ -71,11 +72,11 @@ class Crypt_Image():
         if val==True: self.img = cv2.cvtColor(cv2.cvtColor(self.orig,cv2.COLOR_BGR2GRAY),cv2.COLOR_GRAY2BGR)
         else: self.img=self.orig
         return val
-
-    ENABLE_BLUE = property(fget=lambda x:x,fset=setBlue)
-    ENABLE_GREEN = property(fget=lambda x:x,fset=setGreen)
-    ENABLE_RED= property(fget=lambda x:x,fset=setRed)
-    IS_GRAYSCALE=property(fget=lambda x:x,fset=setGray)
+    def givesame(self,val): return val
+    ENABLE_BLUE = property(fget=givesame,fset=setBlue)
+    ENABLE_GREEN = property(fget=givesame,fset=setGreen)
+    ENABLE_RED= property(fget=givesame,fset=setRed)
+    IS_GRAYSCALE=property(fget=givesame,fset=setGray)
 
 
 class Segment_Image():
@@ -83,11 +84,10 @@ class Segment_Image():
         self.orig = img
         self.img = self.orig
         self.b,self.g,self.r = cv2.split(self.orig)
-        self.matSize = self.img.shape[:2]
         self.ENABLE_RED = rv
         self.ENABLE_GREEN = gv
         self.ENABLE_BLUE = bv
-        
+        self.matSize = self.img.shape[:2]
     ## Transformations and properties:
     def setRed(self,val):
         if val==True: self.img[:,:,2] = self.r
