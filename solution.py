@@ -53,30 +53,30 @@ class Crypt_Image():
         if val==True: self.img[:,:,2] = self.r
         else :
             self.img[:,:,2] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_RED = val
     
 
     def setGreen(self,val):
         if val==True: self.img[:,:,1] = self.g
         else : 
             self.img[:,:,1] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_GREEN = val
 
     def setBlue(self,val):
         if val==True: self.img[:,:,0] = self.b
         else :
             self.img[:,:,0] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_BLUE = val
     
     def setGray(self,val):
         if val==True: self.img = cv2.cvtColor(cv2.cvtColor(self.orig,cv2.COLOR_BGR2GRAY),cv2.COLOR_GRAY2BGR)
         else: self.img=self.orig
-        return val
+        self._IS_GRAYSCALE = val
         
-    ENABLE_BLUE = property(fget=lambda x:x.ENABLE_BLUE,fset=setBlue)
-    ENABLE_GREEN = property(fget=lambda x:x.ENABLE_GREEN,fset=setGreen)
-    ENABLE_RED= property(fget=lambda x:x.ENABLE_RED,fset=setRed)
-    IS_GRAYSCALE=property(fget=lambda x:x.IS_GRAYSCALE,fset=setGray)
+    ENABLE_BLUE = property(fget=lambda x:x._ENABLE_BLUE,fset=setBlue)
+    ENABLE_GREEN = property(fget=lambda x:x._ENABLE_GREEN,fset=setGreen)
+    ENABLE_RED= property(fget=lambda x:x._ENABLE_RED,fset=setRed)
+    IS_GRAYSCALE=property(fget=lambda x:x._IS_GRAYSCALE,fset=setGray)
 
 
 class Segment_Image():
@@ -93,20 +93,20 @@ class Segment_Image():
         if val==True: self.img[:,:,2] = self.r
         else :
             self.img[:,:,2] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_RED = val
     
 
     def setGreen(self,val):
         if val==True: self.img[:,:,1] = self.g
         else : 
             self.img[:,:,1] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_GREEN = val
 
     def setBlue(self,val):
         if val==True: self.img[:,:,0] = self.b
         else :
             self.img[:,:,0] = np.zeros(np.multiply(*self.matSize)).reshape(self.matSize)
-        return val
+        self._ENABLE_BLUE = val
 
     ENABLE_BLUE = property(fset=setBlue)
     ENABLE_GREEN = property(fset=setGreen)
