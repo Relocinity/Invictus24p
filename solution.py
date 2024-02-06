@@ -72,11 +72,11 @@ class Crypt_Image():
         if val==True: self.img = cv2.cvtColor(cv2.cvtColor(self.orig,cv2.COLOR_BGR2GRAY),cv2.COLOR_GRAY2BGR)
         else: self.img=self.orig
         return val
-    def givesame(self,val): return val
-    ENABLE_BLUE = property(fget=givesame,fset=setBlue)
-    ENABLE_GREEN = property(fget=givesame,fset=setGreen)
-    ENABLE_RED= property(fget=givesame,fset=setRed)
-    IS_GRAYSCALE=property(fget=givesame,fset=setGray)
+        
+    ENABLE_BLUE = property(fget=lambda x:x.ENABLE_BLUE,fset=setBlue)
+    ENABLE_GREEN = property(fget=lambda x:x.ENABLE_GREEN,fset=setGreen)
+    ENABLE_RED= property(fget=lambda x:x.ENABLE_RED,fset=setRed)
+    IS_GRAYSCALE=property(fget=lambda x:x.IS_GRAYSCALE,fset=setGray)
 
 
 class Segment_Image():
