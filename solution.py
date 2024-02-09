@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 from functools import reduce
 
 class Crypt_Image():
-    def __init__(self,filepath: str,solution_key):
-        if hashlib.sha256(str(solution_key).encode("utf-8")).hexdigest()!='ff9fb51036a15c5c92c8b80d3dac03262bfb9d081b1490f719ab4127e6069fce': your_ans_is_wrong+=1
+    def __init__(self,filepath: str):
         self.orig = cv2.imread(filepath)
         self.img = copy.deepcopy(self.orig)
         self.b,self.g,self.r = cv2.split(self.orig)
